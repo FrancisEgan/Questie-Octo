@@ -174,6 +174,45 @@ local function StarterFactionAllowsPlayerRaw(raw)
   return not sawDirectStarter
 end
 
+
+local function IsHiddenByLowLevelSettingsRaw(raw)
+  if not raw then return false end
+  local settings=QuestieOcto.MinimapSettings
+  if not settings then return false end
+  local level=UnitLevel("player") or 1
+  local questLevel=tonumber(raw["lvl"] or 0) or 0
+  if questLevel<=0 then return false end
+
+  local showLowLevel=settings:Get("showLowLevelQuests") and true or false
+  if not showLowLevel then return questLevel<level-4 end
+
+  local below=tonumber(settings:Get("lowLevelQuestRange")) or 35
+  return below<35 and questLevel<level-below or false
+end
+
+local function RewardedPrerequisiteWithLowLevelRepair(self,questID,successorRaw)
+  local completion=QuestieOcto.Completion
+  if completion:IsRewardedForPrerequisite(questID) then return true end
+
+  -- Do not spend a direct completion query repairing a predecessor when this
+  -- successor will itself be hidden by the same low-level setting.
+  if IsHiddenByLowLevelSettingsRaw(successorRaw) then return false end
+
+  -- A completed ordinary predecessor can be missing from the bulk completion
+  -- cache. If that predecessor is filtered as low-level, it never reaches its
+  -- own final direct-completion fallback, so the visible follow-up can become
+  -- falsely blocked. Repair only that starvation case instead of querying every
+  -- missing prerequisite in the database.
+  local raw=QuestieOcto.DatabaseAPI and QuestieOcto.DatabaseAPI.GetQuestRaw
+    and QuestieOcto.DatabaseAPI:GetQuestRaw(questID) or nil
+  if raw and IsHiddenByLowLevelSettingsRaw(raw) and completion.VerifyOrdinaryCompletionFlag then
+    local _,learned=completion:VerifyOrdinaryCompletionFlag(questID,nil)
+    if learned then self.learnedCompletionFlag=true end
+  end
+
+  return completion:IsRewardedForPrerequisite(questID)
+end
+
 function A:PrerequisitesSatisfiedRaw(questID,raw)
   local pre=raw and raw["pre"] or nil
   local preActive=raw and raw["preActive"] or nil
@@ -203,7 +242,7 @@ function A:PrerequisitesSatisfiedRaw(questID,raw)
         allSet[id]=true
         groupHasRequirement=true
         hasRequirement=true
-        if not QuestieOcto.Completion:IsRewardedForPrerequisite(id) then groupComplete=false end
+        if not RewardedPrerequisiteWithLowLevelRepair(self,id,raw) then groupComplete=false end
       end
       if groupHasRequirement and groupComplete then satisfied=true end
     end
@@ -220,7 +259,7 @@ function A:PrerequisitesSatisfiedRaw(questID,raw)
           and QuestieOcto.Progression:IsChainOnlyPredecessor(questID,id)
         if not chainOnly then
           hasRequirement=true
-          if QuestieOcto.Completion:IsRewardedForPrerequisite(id) then satisfied=true end
+          if RewardedPrerequisiteWithLowLevelRepair(self,id,raw) then satisfied=true end
         end
       end
     end

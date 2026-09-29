@@ -2508,3 +2508,24 @@ wording, respawn values, drop rates, or thresholds changed.
   (40587) remains correctly marked timed in the compiled data; no speculative map
   objective was fabricated for its courier item.
 
+1.43 - LOW-LEVEL PREREQUISITE COMPLETION REPAIR
+------------------------------------------------------------
+- Audited a Moonwhisper Coast report for missing Narvalis Point quest markers.
+  The reported quest records, starter NPC coordinates, map 5642 candidate index,
+  and current Tortoise prerequisite rows were all present and internally
+  consistent; no Moonwhisper database override was added.
+- Reproduced a generic availability defect: an ordinary completed prerequisite
+  missing from the bulk completion cache could be filtered as low-level before
+  reaching the existing direct `IsQuestFlaggedCompleted` fallback. A higher-
+  level follow-up then failed its prerequisite check even though the direct flag
+  knew the lower-level predecessor was rewarded.
+- Added a targeted predecessor repair only when the successor remains inside the
+  configured level range and the missing ordinary predecessor falls outside it.
+  Existing direct-flag caching and resettable exclusions remain authoritative.
+- Audited 970 ordinary level-differential prerequisite edges and added full-class
+  regression coverage. A broad verify-every-prerequisite prototype was rejected
+  after materially increasing direct completion calls; the selected fix adds no
+  extra predecessor calls when low-level quests are shown at the full range.
+- No quest data, starter, map coordinate, map candidate, polling, OnUpdate,
+  SavedVariables schema, tracker, or progression-chain semantics changed.
+

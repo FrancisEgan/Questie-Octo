@@ -1,5 +1,10 @@
 # Questie-Octo Changelog
 
+## 1.43
+- Fixed follow-up quest markers that could disappear when their completed prerequisite was itself filtered as low-level and missing from the bulk completion cache. The availability service now repairs only that specific low-level prerequisite history through the existing cached ClassicAPI direct-completion fallback.
+- Audited Moonwhisper Coast/Narvalis Point end-to-end: The Light of Elunaris (42087), Scales of the Tideblade (42089), Serpents Without Heads (42090), and their surrounding current-server prerequisite rows, starters, coordinates, and map-candidate entries are present and consistent. The failure was availability-state repair, not missing map data.
+- Audited the wider current prerequisite graph: 970 ordinary level-differential prerequisite edges are covered by the regression class. The targeted fix adds no direct predecessor queries when the prerequisite remains inside the configured low-level range, and avoids the broad completion-query expansion rejected during the audit. No quest data, map coordinates, polling, OnUpdate, or SavedVariables schema changed.
+
 ## 1.42
 - Corrected optional `NextQuestInChain` availability to match Tortoise in both directions: skipped breadcrumb quests no longer act as completion prerequisites for their follow-ups, while an actually active breadcrumb still blocks that follow-up until it is finished or abandoned.
 - Audited all 90 current chain-only relationships; 86 stale runtime prerequisite entries are now ignored only for completion gating, and four additional active-only chain locks are now represented explicitly. Real `PrevQuestId`/`NextQuestId` prerequisites remain unchanged.
