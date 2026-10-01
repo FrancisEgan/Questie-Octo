@@ -1,5 +1,10 @@
 # Questie-Octo Changelog
 
+## 1.44
+- Corrected seven stale Moonwhisper Coast quest-giver positions using the current supplied Tortoise static spawns and the current Octo client WorldMapArea geometry. This fixes available/turn-in markers that were appearing around Tyrandas instead of their current locations.
+- The corrected NPCs are Arch Druid Renethra Moonwater, Sentinel Commander Silverstreak, Zarazar Sagewind, Irea Dawncaller, Elendon Truebough, Talanis Amberscribe, and Sister Mirallun. This includes the reported Serpents Without Heads, The Light of Elunaris, and Keeper of the Broken Grove marker locations.
+- Re-audited the current Moonwhisper quest-giver coordinate class: these seven were the only large single-spawn outliers; the remaining current single-spawn quest givers agree with server/client projection within 0.2 map percentage points. No quest availability, chain, objective, polling, OnUpdate, or SavedVariables behavior changed.
+
 ## 1.43
 - Fixed follow-up quest markers that could disappear when their completed prerequisite was itself filtered as low-level and missing from the bulk completion cache. The availability service now repairs only that specific low-level prerequisite history through the existing cached ClassicAPI direct-completion fallback.
 - Audited Moonwhisper Coast/Narvalis Point end-to-end: The Light of Elunaris (42087), Scales of the Tideblade (42089), Serpents Without Heads (42090), and their surrounding current-server prerequisite rows, starters, coordinates, and map-candidate entries are present and consistent. The failure was availability-state repair, not missing map data.

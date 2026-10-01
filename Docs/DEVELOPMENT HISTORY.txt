@@ -2529,3 +2529,11 @@ wording, respawn values, drop rates, or thresholds changed.
 - No quest data, starter, map coordinate, map candidate, polling, OnUpdate,
   SavedVariables schema, tracker, or progression-chain semantics changed.
 
+
+1.44 - MOONWHISPER QUEST-GIVER COORDINATE REPAIR
+--------------------------------------------------
+- Built from accepted 1.43 after live screenshots showed Serpents Without Heads and Keeper of the Broken Grove were present on the World Map but pinned around Tyrandas instead of their current quest-giver positions. This corrected the earlier assumption that the report was solely an availability-state problem; the 1.43 prerequisite repair remains independently valid.
+- Audited current map-5642 unit coordinates against the supplied Tortoise `20260618114919_world.sql` Moonwhisper creature snapshot and the current Octo client `WorldMapArea.dbc` row for Moonwhisper Coast (AreaTable 5642). The client bounds are left=-1354, right=-9210, top=10204, bottom=4963.
+- Of 47 current Moonwhisper quest-giver units represented in both data sets, exactly seven single-spawn NPCs are large coordinate outliers (7.5-12.6 map percentage points); every other current single-spawn quest giver agrees within 0.2 points. The stale seven are 62900, 62901, 62902, 62904, 62906, 62907, and 62914.
+- Reprojected those seven current server world spawns through the current client map geometry: Renethra Moonwater 59.24,24.61; Silverstreak 59.08,24.68; Zarazar Sagewind 57.46,28.26; Irea Dawncaller 59.08,25.16; Elendon Truebough 58.83,24.48; Talanis Amberscribe 59.10,24.85; Sister Mirallun 67.79,22.05.
+- This repairs marker placement for the affected quest cluster, including The Light of Elunaris, Serpents Without Heads, and Keeper of the Broken Grove, without changing quest availability, prerequisites, objective ownership, map identity, polling, OnUpdate, or SavedVariables.
