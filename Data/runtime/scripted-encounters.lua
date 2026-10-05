@@ -1,17 +1,7 @@
--- Sparse presentation-only data for scripted encounters / exploration
--- objectives that do not exist as ordinary creature spawns in the server
--- creature table.
---
--- IMPORTANT: this table must never be treated as quest/gameplay truth. It is
--- only a fallback for map/minimap guidance when the canonical creature record
--- has no usable coordinates. If future server-derived creature coordinates
--- exist, those normal coordinates win automatically.
---
--- Coordinates below are derived from the current Turtle server scripts/spawns
--- and the current client WorldMapArea/AreaTrigger geometry. The custom
--- exploration entries use the invisible GameObject positions that award their
--- real dummy-creature objective credit.
-QuestieOcto.ScriptedEncounterData = QuestieOcto.ScriptedEncounterData or {
+-- GENERATED FILE - DO NOT EDIT BY HAND.
+-- Built from Questie-Octo scripted encounter presentation data.
+-- Regenerate with Tools/compile_runtime_db.lua.
+QuestieOcto.RuntimeScriptedEncounters = {
   -- Proving Allegiance: summoned at the recorded dinner-table object.
   [1946]={
     roles={objectiveCreature=true},

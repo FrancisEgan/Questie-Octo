@@ -61,6 +61,14 @@ merge(pfDB.meta,pfDB["meta-turtle"],"replace")
 
 if not QuestieOcto.Enrichment:Apply() then error("enrichment failed") end
 
+-- Current Octo in-game report (2026-10-04): Pig / Oink, Oink! is absent.
+-- Retain the record for identification, but never advertise its availability.
+if pfDB.quests.data[700001] then pfDB.quests.data[700001].disabled=1 end
+
+-- Current Octo in-game report (2026-10-04): A Tusken Affair does not exist.
+-- Its stale Revantusk Watcher starters include a false Undercity map offer.
+if pfDB.quests.data[80300] then pfDB.quests.data[80300].disabled=1 end
+
 -- Final runtime aliases. Source/patch tables are intentionally not serialized.
 for _,name in ipairs(TEXT_DATASETS) do
   local bucket=pfDB[name]
@@ -278,6 +286,8 @@ writeAssignment("Data/runtime/quests.lua",'QuestieOcto.RuntimePFDB["quests"]["da
 writeAssignment("Data/runtime/items.lua",'QuestieOcto.RuntimePFDB["items"]["data"]',runtimeItems)
 writeAssignment("Data/runtime/units.lua",'QuestieOcto.RuntimePFDB["units"]["data"]',runtimeUnits)
 writeAssignment("Data/runtime/objects.lua",'QuestieOcto.RuntimePFDB["objects"]["data"]',runtimeObjects)
+writeAssignment("Data/runtime/scripted-encounters.lua",'QuestieOcto.RuntimeScriptedEncounters',QuestieOcto.ScriptedEncounterData or {})
+writeAssignment("Data/runtime/scripted-encounters.lua",'QuestieOcto.RuntimeScriptedEncounters',QuestieOcto.ScriptedEncounterData or {})
 writeAssignment("Data/runtime/refloot.lua",'QuestieOcto.RuntimePFDB["refloot"]["data"]',runtimeRefs)
 writeAssignment("Data/runtime/quests-itemreq.lua",'QuestieOcto.RuntimePFDB["quests-itemreq"]["data"]',runtimeItemReq)
 writeAssignment("Data/runtime/zones.lua",'QuestieOcto.RuntimePFDB["zones"]["data"]',pfDB.zones.data)

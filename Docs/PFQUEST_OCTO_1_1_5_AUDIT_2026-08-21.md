@@ -85,6 +85,11 @@ stale Stormwind coordinate and preserves the valid Orgrimmar position.
 
 ## Live-confirmed current content
 
+Update (2026-10-04): the player reports that Pig and Oink, Oink! are absent
+from the current game. Quest 700001 is now disabled in the upstream runtime
+database and compiler, superseding the earlier availability claim below.
+The record is retained for identification, without predicted quest markers.
+
 ### 700001 — Oink, Oink! / 900200 — Pig
 
 The completed pfQuest-octo 1.1.4 relation scan identified the level-1 quest, and
