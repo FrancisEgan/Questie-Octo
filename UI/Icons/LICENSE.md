@@ -12,7 +12,7 @@ every `.blp` and `.tga` file are recorded in:
 The current audit verifies byte-for-byte matches for `pfquest_node.tga` and the
 pfQuest tracking/service icons listed in the asset manifest. The supplied
 pfQuest-classicAPI-octo snapshot carries the MIT license preserved at
-`LICENSES/pfQuest-classicAPI-MIT.txt`.
+the root `LICENSE`.
 
 ## Exact Questie matches
 
@@ -25,7 +25,7 @@ verification.
 Current CurseForge project metadata identifies Questie as GPLv3, including the
 Questie v6.0.0 file page. The supplied 5.2.3/6.0.0 ZIPs themselves contain no
 project-level Questie license file. See
-`LICENSES/Questie-LICENSE-METADATA.txt`. This project does not claim that a
+`THIRD_PARTY_NOTICES.md` and `LICENSES/GPL-3.0.txt`. This project does not claim that a
 project-level license necessarily establishes ownership or relicensing rights
 for every individual artwork an upstream project may have distributed.
 

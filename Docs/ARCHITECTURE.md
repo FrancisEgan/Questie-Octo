@@ -1,5 +1,10 @@
 # Questie-Octo architecture base
 
+Current database ownership: OctoQuestDatabase is the authoritative build source.
+See [SHARED_DATABASE.md](SHARED_DATABASE.md) for the pinned Node adapter, generated
+outputs, and validation. The Data/pfDB compiler descriptions below are preserved
+historical design records; they are no longer the active regeneration pipeline.
+
 ## Non-negotiable design
 
 - ClassicAPI is the only required enhanced-client compatibility layer.

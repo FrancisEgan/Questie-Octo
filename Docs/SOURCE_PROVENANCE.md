@@ -1,3 +1,5 @@
+> License consolidation (2026-10-05): historical filenames below describe the original audit. Repeated MIT texts are now consolidated in the root LICENSE, reference notes in THIRD_PARTY_NOTICES.md, and the duplicate ClassicAPI GPL text in LICENSES/GPL-3.0.txt. Original duplicate copies are preserved in the workspace cleanup archive.
+
 > Packaging note (2026-08-21): Questie-Octo 1.0.68 was rebuilt fresh from the accepted 1.0.66 Questie-Octo source after the 1.0.67 delivery was rejected as the wrong project artifact. pfQuest-octo 1.1.5 is audit/reference input only; it is not the addon package baseline.
 
 # Questie-Octo source provenance and licensing audit

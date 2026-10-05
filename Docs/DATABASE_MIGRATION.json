@@ -1,0 +1,112 @@
+{
+  "repository": "https://github.com/FrancisEgan/Questie-Octo",
+  "upstream": "https://github.com/SandreaSub/Questie-Octo",
+  "sourceRevision": "e631044bef85d68bf74ac0f79af35e1425201ee0",
+  "version": "1.44",
+  "inputs": [
+    {
+      "file": "Data/runtime/init.lua",
+      "sha256": "cfcad1bcfac97da6eecb847e322199b28fc12dc54c576708b94979a99aa2a778"
+    },
+    {
+      "file": "Data/runtime/quests.lua",
+      "sha256": "ba22eb894a3764f2508b68335c1b4775901aa4bb5bff8fa1d584b7c69b0d9c84"
+    },
+    {
+      "file": "Data/runtime/items.lua",
+      "sha256": "10e95e47d0816b789e0dff5fdeb06c1082e343fa6d9a174abc76c3195af18b4c"
+    },
+    {
+      "file": "Data/runtime/units.lua",
+      "sha256": "8a0817389619f94c8d42229f8e1bcd29a68dec3eb900b0511e13f46039075e19"
+    },
+    {
+      "file": "Data/runtime/objects.lua",
+      "sha256": "1e2b1cfbf54598146a294b209ce5e8fdfa319413fd26154c38080a68fbcca36f"
+    },
+    {
+      "file": "Data/runtime/refloot.lua",
+      "sha256": "3bb3b0d1a83e748fba8fc414161dded153f0fe1f8bd0f1e834eae298b556790a"
+    },
+    {
+      "file": "Data/runtime/quests-itemreq.lua",
+      "sha256": "661f99c11e11249a8056fd4d8fd2d7ed85a2954c8b321bb069d294875459590b"
+    },
+    {
+      "file": "Data/runtime/zones.lua",
+      "sha256": "c3fa0060185a5c4717080e8dce076427a67a19602e0c5bf54a78a8aafb051783"
+    },
+    {
+      "file": "Data/runtime/areatrigger.lua",
+      "sha256": "1b608e88ee349f19a65ff9f0bca1fad0b07a7865b9b6b5f491f3aa829020c97e"
+    },
+    {
+      "file": "Data/runtime/minimap.lua",
+      "sha256": "4eff247e7ca044dd71480cf3102c73f27663692bcb366a76a22f3bb5794d8757"
+    },
+    {
+      "file": "Data/runtime/meta.lua",
+      "sha256": "a0de5cb61cf176f0b9d724e671120c3816ebe79d688a60420beec4bdc097a9d3"
+    },
+    {
+      "file": "Data/runtime/enUS.lua",
+      "sha256": "98fd8c0349533eca2f32f82cb04b334508f1d1dcf4d025e2d803cd4f7271a53a"
+    },
+    {
+      "file": "Data/runtime/scripted-encounters.lua",
+      "sha256": "91e19c9407dae77c4ab989d75e6338ab507e4547024f028c30d46884e3d6888b"
+    },
+    {
+      "file": "Data/EventSchedule.lua",
+      "sha256": "c86b143d6232bb84fcc687b21dbd44d846733e2a5151441a616372579ab80831"
+    },
+    {
+      "file": "Data/CalendarEventRules.lua",
+      "sha256": "9c996976b07eeaf52fd2b20e013468b0cce221bd2816fd7fdbb0f267ff9faa2a"
+    },
+    {
+      "file": "Data/QuestRewards.lua",
+      "sha256": "33d37a1510516c9a3edcb6e055cd8a1bf9aa2d01246b07ecb243650d00faa374"
+    },
+    {
+      "file": "Data/QuestObjectiveRequirements.lua",
+      "sha256": "9905756ba32fb5fdb789c4cfa179d68db1292439b69d492fce4eab46079d1aaf"
+    },
+    {
+      "file": "Data/ScriptedEncounters.lua",
+      "sha256": "67afcc82898cc0d168e1a8c06abf4d388b18bf4ba25f3ea1e208da61d3dd886b"
+    },
+    {
+      "file": "Data/QuestProgression.lua",
+      "sha256": "c97404637cc715088a98f5ca45b46e454237beab42305e6031ecc171e4bdfc13"
+    },
+    {
+      "file": "Data/QuestDirectProgression.lua",
+      "sha256": "8aa067bee955dc53bbb9b26784592d33b387f6b0c21ee3a4e894c232ec98b7e2"
+    },
+    {
+      "file": "Data/QuestChainAvailability.lua",
+      "sha256": "2d9bebd400433cd6eea455b1f20b076142637fe31d60eec1418e7a197b5ab74a"
+    },
+    {
+      "file": "Data/PvPQuestTypes.lua",
+      "sha256": "ad3c3d83488ea60b2fc14117e6ea1d15a805513d35b6e4eab992a49e8c106494"
+    },
+    {
+      "file": "Data/EliteQuestTypes.lua",
+      "sha256": "0dc9685fa5e1dffa16a5ce51235e1f9a70cf864dd77d94bf13be03998171317e"
+    }
+  ],
+  "scope": "Resolved reachability-pruned runtime plus complete available supplemental datasets. No absent rows are reconstructed from historical raw data.",
+  "mergePolicy": "Original compiler applied Octo overwrites to Turtle layers before field merges for quests/items/units/objects; other datasets replaced records. Locale fields merged. Underscore markers deleted records or fields. Enrichment and current compiler corrections were applied after merges. This extraction copies that final effective state and does not replay patches.",
+  "historicalRawSourceRevision": "6adf9a1594e235a03a0394a5821e117718c4f66e",
+  "limitations": [
+    "Accepted Full/source and runtime ZIPs and the larger succession package were not supplied. The installed Git checkout is the migration baseline.",
+    "The current checkout lacks Data/pfDB; historical unpruned source exists at the recorded older revision but may not reproduce current effective data."
+  ],
+  "questlineBaseline": {
+    "repository": "https://github.com/FrancisEgan/Questline",
+    "revision": "2be32c9b3760c988a940508d7b27e0db56ee37aa",
+    "version": "0.1.63"
+  }
+}

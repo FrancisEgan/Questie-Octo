@@ -1,0 +1,15 @@
+{
+  "name": "questie-octo",
+  "version": "1.44.0",
+  "private": true,
+  "description": "Offline database adapter and validation; Node is not required in game.",
+  "scripts": {
+    "build:database": "node Tools/build_database.js",
+    "test:database": "node Tools/validate_database.js",
+    "test:migration": "node Tools/validate_database_migration.js"
+  },
+  "devDependencies": {
+    "luaparse": "0.3.1",
+    "fengari": "0.1.5"
+  }
+}

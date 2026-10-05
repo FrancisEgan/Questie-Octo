@@ -11,10 +11,10 @@ manifest=ROOT/'Tools/provenance_assets.tsv'
 required=[
     ROOT/'LICENSE', ROOT/'THIRD_PARTY_NOTICES.md', ROOT/'PROJECT_IDENTITY.md',
     ROOT/'CONTRIBUTING.md', ROOT/'Docs/SOURCE_PROVENANCE.md',
-    ROOT/'Docs/ASSET_PROVENANCE.md', ROOT/'LICENSES/Questie-Octo-MIT.txt',
-    ROOT/'LICENSES/Questie-Octo-SCOPE-NOTICE.txt', ROOT/'LICENSES/GPL-3.0.txt',
-    ROOT/'LICENSES/Tortoise-AGPL-3.0.txt',
-    ROOT/'LICENSES/Questie-LICENSE-METADATA.txt', ROOT/'UI/Icons/LICENSE.md',
+    ROOT/'Docs/ASSET_PROVENANCE.md', ROOT/'LICENSES/Ace3v-LICENSE.txt',
+    ROOT/'LICENSES/GPL-3.0.txt', ROOT/'LICENSES/Tortoise-AGPL-3.0.txt',
+    ROOT/'LICENSES/OctoQuestDatabase/LICENSE', ROOT/'LICENSES/OctoQuestDatabase/NOTICE.md',
+    ROOT/'UI/Icons/LICENSE.md',
 ]
 errors=[]
 for p in required:

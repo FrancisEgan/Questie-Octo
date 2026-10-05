@@ -1,6 +1,6 @@
 -- GENERATED FILE - DO NOT EDIT BY HAND.
--- Built from Questie-Octo's packaged pfQuest/Turtle/Octo source data.
--- Regenerate with Tools/compile_runtime_db.lua.
+-- Source: OctoQuestDatabase sha256:70cb026880ca6919eb23a7ba28af17fc5224d9bb533eb7ab569f4b5a955b6f2b
+-- Adapter: Tools/build_database.js; correct data in OctoQuestDatabase.
 QuestieOcto.RuntimePFDB["objects"]["data"]={
 [2]={["coords"]={}},
 [31]={["coords"]={{84.5,46.8,44,2}},["fac"]="A"},

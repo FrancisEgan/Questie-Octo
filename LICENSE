@@ -1,43 +1,13 @@
-Questie-Octo Licensing Notice
-=============================
-
-Questie-Octo is a mixed-source project. This file scopes the license grant for
-original Questie-Octo contributions and must be read together with
-THIRD_PARTY_NOTICES.md, LICENSES/, Docs/SOURCE_PROVENANCE.md, source comments,
+This MIT notice covers original Questie-Octo contributions and identified MIT
+portions. Other material retains its upstream terms; see THIRD_PARTY_NOTICES.md
 and UI/Icons/LICENSE.md.
 
-Original Questie-Octo contributions
-------------------------------------
-To the extent code, documentation, integration work, generated build tooling,
-and other material was first authored for Questie-Octo and is not copied from
-or derived from third-party material in a way that remains subject to upstream
-terms, those original contributions are offered under the MIT License reproduced
-below.
-
-Third-party material
---------------------
-This MIT grant does not relicense third-party code, data, artwork, libraries,
-trademarks, or other material. Those portions retain their applicable upstream
-rights and restrictions. Nothing in this repository grants rights that the
-Questie-Octo contributors do not themselves hold.
-
-Copyleft and combined-work notice
----------------------------------
-The MIT License is compatible with many copyleft licenses, but it does not
-override them. To the extent a distributed combination or derivative work is
-covered by GPL, AGPL, or other upstream terms, those terms may impose additional
-obligations on redistribution of the covered material or combined work. This
-notice does not attempt to decide that legal question for every historical
-source or asset.
-
-Project identity and non-endorsement information is recorded in
-PROJECT_IDENTITY.md.
-
-MIT License for original Questie-Octo contributions
-----------------------------------------------------
 MIT License
 
 Copyright (c) 2026 Questie-Octo contributors
+Copyright (c) 2017-2021 Eric Mauser (Shagu)
+Copyright (c) 2021 Eric Mauser (Shagu)
+Copyright (c) 2025 Eric Mauser (Shagu)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -1,6 +1,6 @@
 -- GENERATED FILE - DO NOT EDIT BY HAND.
--- Built from Questie-Octo's packaged pfQuest/Turtle/Octo source data.
--- Regenerate with Tools/compile_runtime_db.lua.
+-- Source: OctoQuestDatabase sha256:70cb026880ca6919eb23a7ba28af17fc5224d9bb533eb7ab569f4b5a955b6f2b
+-- Adapter: Tools/build_database.js; correct data in OctoQuestDatabase.
 QuestieOcto.RuntimePFDB["quests"]["data"]={
 [2]={["end"]={["U"]={12696}},["lvl"]=30,["min"]=20,["obj"]={["I"]={16305}},["pre"]={6383},["race"]=434,["start"]={["I"]={16305}}},
 [5]={["end"]={["U"]={272}},["lvl"]=20,["min"]=17,["pre"]={163},["race"]=589,["start"]={["U"]={288}}},
