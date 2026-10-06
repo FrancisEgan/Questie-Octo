@@ -1,6 +1,3 @@
--- GENERATED FILE - DO NOT EDIT BY HAND.
--- Source: OctoQuestDatabase sha256:70cb026880ca6919eb23a7ba28af17fc5224d9bb533eb7ab569f4b5a955b6f2b
--- Adapter: Tools/build_database.js; correct data in OctoQuestDatabase.
 QuestieOcto.RuntimePFDB["minimap"]={
 [0]={0,0},
 [1]={4925,3283.34},

@@ -1,6 +1,3 @@
--- GENERATED FILE - DO NOT EDIT BY HAND.
--- Source: OctoQuestDatabase sha256:70cb026880ca6919eb23a7ba28af17fc5224d9bb533eb7ab569f4b5a955b6f2b
--- Adapter: Tools/build_database.js; correct data in OctoQuestDatabase.
 QuestieOcto.RuntimePFDB["areatrigger"]["data"]={
 [1]={["coords"]={{35.8,62.1,11}}},
 [2]={["coords"]={{21.9,67.9,85}}},

@@ -1,6 +1,3 @@
--- GENERATED FILE - DO NOT EDIT BY HAND.
--- Source: OctoQuestDatabase sha256:70cb026880ca6919eb23a7ba28af17fc5224d9bb533eb7ab569f4b5a955b6f2b
--- Adapter: Tools/build_database.js; correct data in OctoQuestDatabase.
 QuestieOcto.RuntimePFDB["quests"]["data"]={
 [2]={["end"]={["U"]={12696}},["lvl"]=30,["min"]=20,["obj"]={["I"]={16305}},["pre"]={6383},["race"]=434,["start"]={["I"]={16305}}},
 [5]={["end"]={["U"]={272}},["lvl"]=20,["min"]=17,["pre"]={163},["race"]=589,["start"]={["U"]={288}}},
@@ -755,7 +752,7 @@ QuestieOcto.RuntimePFDB["quests"]["data"]={
 [782]={["end"]={["U"]={1068}},["lvl"]=43,["min"]=40,["obj"]={["I"]={4640}},["race"]=434,["start"]={["U"]={1068}}},
 [783]={["end"]={["U"]={197}},["lvl"]=1,["min"]=1,["race"]=589,["start"]={["U"]={823}}},
 [784]={["end"]={["U"]={3139}},["lvl"]=7,["min"]=3,["obj"]={["U"]={3128,3129,3192}},["race"]=434,["start"]={["U"]={3139}}},
-[786]={["end"]={["U"]={3140}},["lvl"]=8,["min"]=5,["obj"]={["O"]={3189,3190,3192}},["pre"]={785},["race"]=434,["start"]={["U"]={3140}}},
+[786]={["end"]={["U"]={3140}},["lvl"]=8,["min"]=5,["obj"]={["O"]={3189,3190,3192}},["race"]=434,["start"]={["U"]={3140}}},
 [787]={["end"]={["U"]={3143}},["lvl"]=1,["min"]=1,["race"]=434,["start"]={["U"]={3144}}},
 [788]={["end"]={["U"]={3143}},["lvl"]=2,["min"]=1,["obj"]={["U"]={3098}},["pre"]={787,4641},["race"]=434,["start"]={["U"]={3143}}},
 [789]={["end"]={["U"]={3143}},["lvl"]=3,["min"]=1,["obj"]={["I"]={4862}},["pre"]={788},["race"]=434,["start"]={["U"]={3143}}},

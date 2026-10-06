@@ -56,5 +56,9 @@ assert(QuestieOcto.RuntimeQuestIDs[1]==2)
 assert(QuestieOcto.ScriptedEncounterData[1946].anchorObject==1557)
 assert(QuestieOcto.RuntimePFDB.quests.data[80300].disabled==1)
 assert(QuestieOcto.RuntimePFDB.quests.data[700001].disabled==1)`, 'standalone assertions');
+execute(`local q=QuestieOcto.RuntimePFDB.quests.data[786]
+assert(q.pre==nil)
+assert(q.start.U[1]==3140 and q.min==5 and q.race==434)
+assert(q.obj.O[1]==3189 and q.obj.O[2]==3190 and q.obj.O[3]==3192)`, 'Thwarting Kolkar Aggression regression');
 lua.lua_close(L);
 console.log('Questie-Octo database: '+checks+' checks passed; TOC database files executed standalone.');

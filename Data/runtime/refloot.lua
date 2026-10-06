@@ -1,6 +1,3 @@
--- GENERATED FILE - DO NOT EDIT BY HAND.
--- Source: OctoQuestDatabase sha256:70cb026880ca6919eb23a7ba28af17fc5224d9bb533eb7ab569f4b5a955b6f2b
--- Adapter: Tools/build_database.js; correct data in OctoQuestDatabase.
 QuestieOcto.RuntimePFDB["refloot"]["data"]={
 [2023]={["U"]={[7073]=1}},
 [2043]={["U"]={[10819]=1}},

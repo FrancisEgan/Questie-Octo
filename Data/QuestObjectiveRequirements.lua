@@ -1,6 +1,3 @@
--- GENERATED FILE - DO NOT EDIT BY HAND.
--- Source: OctoQuestDatabase sha256:70cb026880ca6919eb23a7ba28af17fc5224d9bb533eb7ab569f4b5a955b6f2b
--- Adapter: Tools/build_database.js; correct data in OctoQuestDatabase.
 -- Historical source notes (upstream revision recorded in Docs/DATABASE_MIGRATION.json):
 -- Base projection: supplied Turtle WoW tw_world_quest_template.sql.
 -- Only existing Questie-Octo runtime objective identities with exact matching IDs are retained.

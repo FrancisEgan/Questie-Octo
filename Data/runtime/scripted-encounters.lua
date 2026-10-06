@@ -1,6 +1,3 @@
--- GENERATED FILE - DO NOT EDIT BY HAND.
--- Source: OctoQuestDatabase sha256:70cb026880ca6919eb23a7ba28af17fc5224d9bb533eb7ab569f4b5a955b6f2b
--- Adapter: Tools/build_database.js; correct data in OctoQuestDatabase.
 QuestieOcto.RuntimeScriptedEncounters={
 [1946]={["roles"]={["objectiveCreature"]=true},["anchorObject"]=1557,["note"]="Summon Lillith Nefara by placing a Candle of Beckoning on Lillith's Dinner Table."},
 [3654]={["roles"]={["objectiveCreature"]=true},["coords"]={{45.8,9.2,718}},["note"]="Scripted encounter: Mutanus appears near the end of the Naralex event. Defeat the four Fanglords, then speak to the Disciple of Naralex near the instance entrance to begin the escort."},

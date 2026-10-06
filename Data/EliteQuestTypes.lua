@@ -1,6 +1,3 @@
--- GENERATED FILE - DO NOT EDIT BY HAND.
--- Source: OctoQuestDatabase sha256:70cb026880ca6919eb23a7ba28af17fc5224d9bb533eb7ab569f4b5a955b6f2b
--- Adapter: Tools/build_database.js; correct data in OctoQuestDatabase.
 -- Historical source notes (upstream revision recorded in Docs/DATABASE_MIGRATION.json):
 -- Questie-Octo Elite / Raid / Dungeon quest type projection.
 -- Generated primarily from the authoritative Turtle server quest_template supplied with the project.

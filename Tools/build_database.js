@@ -7,10 +7,9 @@ const sourceNotes=JSON.parse(fs.readFileSync(path.join(__dirname,'database-sourc
 const {data,manifest,lock,sourceRoot}=loadDatabase(root);
 copyNotices(sourceRoot,manifest,path.join(root,'LICENSES/OctoQuestDatabase'));
 const out=path.join(root,'Data/runtime');fs.mkdirSync(out,{recursive:true});
-const header='-- GENERATED FILE - DO NOT EDIT BY HAND.\n-- Source: OctoQuestDatabase '+manifest.revision+'\n-- Adapter: Tools/build_database.js; correct data in OctoQuestDatabase.\n';
 const outputs=[];
 function write(relative,body,history='') {
-  const bytes=header+(history?'-- Historical source notes (upstream revision recorded in Docs/DATABASE_MIGRATION.json):\n'+history+'\n':'')+body+'\n';
+  const bytes=(history?'-- Historical source notes (upstream revision recorded in Docs/DATABASE_MIGRATION.json):\n'+history+'\n':'')+body+'\n';
   fs.writeFileSync(path.join(root,relative),bytes);outputs.push({file:relative,sha256:sha256(bytes)});
 }
 function assignment(relative,target,records) {
