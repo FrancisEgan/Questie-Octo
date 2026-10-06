@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "source": "OctoQuestDatabase",
   "repository": "https://github.com/FrancisEgan/OctoQuestDatabase.git",
-  "revision": "sha256:e5f4e0842a9c8128773b44f5caabac9f5b4cfd0c93150812387f6d5e7f043f94",
+  "revision": "sha256:f801b92190a2747ce4fd349abc40acb9adfbc4126e592e4b1dd94e2e614f3192",
   "inputs": [
     {
       "file": "LICENSE",
@@ -58,7 +58,7 @@
     },
     {
       "file": "source/units.json",
-      "sha256": "663bf1ba83bcf944dbd26c939374e804a71d269e5a94f7d920d7e8dc1ebb078c"
+      "sha256": "9d7c4d4f6554e832dc2dae745acb673decef04c481a1e9a81c8314050f1f9309"
     },
     {
       "file": "source/zones.json",
@@ -68,7 +68,7 @@
   "outputs": [
     {
       "file": "Data/runtime/init.lua",
-      "sha256": "5ea7ef8d28acd6f3d5089c8138b3ee5f960ab919aea886700f560edf42783414"
+      "sha256": "6c2d5246a4382cfca8ca79e27801010a7e9e98b825623742a952d564c1865c8f"
     },
     {
       "file": "Data/runtime/quests.lua",
@@ -80,7 +80,7 @@
     },
     {
       "file": "Data/runtime/units.lua",
-      "sha256": "3ca8f94e2756fc24e28c49a05753afb86135ed4fbd818122b549bd0a4b954291"
+      "sha256": "a247db901883f67c5ace829521b8f56d3c80efee226c41e1727119a393970147"
     },
     {
       "file": "Data/runtime/objects.lua",
@@ -124,11 +124,11 @@
     },
     {
       "file": "Data/runtime/map-candidates.lua",
-      "sha256": "de94095a070b8e93b3d92bffed7748b1f53ca36bb3a4fff2a4c808d54b0021e4"
+      "sha256": "9788f5816fd2f426d7bb9d573dc4e8945c5bd05f61315df2047f31763901b516"
     },
     {
       "file": "Data/runtime/runtime-stats.lua",
-      "sha256": "627918f6fbcd0c3ed8f984cffe17c7f61d38a6895505f03bfd0cba543e10f7f1"
+      "sha256": "2b269b87ee9e0b5e09f3e5e7a1204b74db2a8c2c862bc159fb3240d84b458701"
     },
     {
       "file": "Data/runtime/finalize.lua",
@@ -178,7 +178,7 @@
   "stats": {
     "quests": 6704,
     "maps": 108,
-    "links": 8680,
+    "links": 8626,
     "items": 3641,
     "units": 14139,
     "objects": 1644,

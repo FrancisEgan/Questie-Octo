@@ -1,7 +1,7 @@
 QuestieOcto.RuntimeDatabaseStats={
 ["quests"]=6704,
 ["maps"]=108,
-["links"]=8680,
+["links"]=8626,
 ["items"]=3641,
 ["units"]=14139,
 ["objects"]=1644,
