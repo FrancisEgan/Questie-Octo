@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "source": "OctoQuestDatabase",
   "repository": "https://github.com/FrancisEgan/OctoQuestDatabase.git",
-  "revision": "sha256:f801b92190a2747ce4fd349abc40acb9adfbc4126e592e4b1dd94e2e614f3192",
+  "revision": "sha256:3e3a787de08525f0aa8853212141a9517ddd30b1734b453fc5d1f4011ddeefaf",
   "inputs": [
     {
       "file": "LICENSE",
@@ -34,7 +34,7 @@
     },
     {
       "file": "source/objects.json",
-      "sha256": "0acd425060a0743488bedbe333d9c3f39775e0ef5f4b7dbcf3c748157f09e143"
+      "sha256": "a98514f46d2c5fcd36f3b0cd3cd942984e3624971d2e4c5ceb057113ffe230b8"
     },
     {
       "file": "source/quests-itemreq.json",
@@ -68,7 +68,7 @@
   "outputs": [
     {
       "file": "Data/runtime/init.lua",
-      "sha256": "6c2d5246a4382cfca8ca79e27801010a7e9e98b825623742a952d564c1865c8f"
+      "sha256": "d30707cd9a1621280aafdf5f7598a856c4bff3739732c14985259a311198b9ee"
     },
     {
       "file": "Data/runtime/quests.lua",
@@ -84,7 +84,7 @@
     },
     {
       "file": "Data/runtime/objects.lua",
-      "sha256": "c7466457b370a622ecf431416292add82453514dc620917fbb828bae6e7075d0"
+      "sha256": "100eb9f46aa6796f1a4ddb2e5554e762353b5f3c695d145ff20d6dfa404c058d"
     },
     {
       "file": "Data/runtime/refloot.lua",

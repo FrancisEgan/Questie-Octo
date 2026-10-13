@@ -124,6 +124,22 @@ map (and a dungeon/detail map already displayed by another addon), but the
 Interface 11200/ClassicAPI surface has no arbitrary instance-map setter. Questie-
 Octo therefore does not fake an outdoor objective or custom dungeon map merely to
 make an out-of-instance tracker click appear successful.
+
+## Live Tablet of Kaz'gan correction (2026-10-12)
+
+A player screenshot for A Grave Misunderstanding! (42040) shows the player
+standing at the tablet in the northern part of the eastern purple chamber,
+while the inherited objective marker sits south of that chamber in blank map
+space. This live Octo report supersedes the earlier Turtle spawn-derived point.
+
+OctoQuestDatabase/source/objects.json changes object 2020339 from 48.7/65.4
+to approximately 51.0/29.5 in Frostmane Hollow (5734). The estimate uses the
+player arrow relative to the old object marker and the native map aspect ratio;
+the screenshot is cropped and supplies no numeric player coordinates. Confirm
+the exact position in game when available. The 300-second respawn and the
+quest/item/object relationships are retained. Both consumers adopt the same
+shared content revision and regenerate their data.
+
 ## 1.0.62 follow-up
 
 Peroth'arn (60686) and Ursol (62947) no longer retain the inherited generic `50,50` area-5640 points. The current server snapshot still has no ordinary static map-819 spawn for either scripted encounter, so Questie-Octo now publishes no objective map position for them until verified source or live evidence provides one. Their quest relationships and pickup markers remain unchanged.
