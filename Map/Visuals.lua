@@ -214,6 +214,34 @@ function V:IsObjectiveRole(role)
   return role=="objectiveCreature" or role=="objectiveObject" or role=="objectiveItemSource"
 end
 
+function V:IsObjectiveOnlyPin(pin)
+  if not pin or pin.itemStartArea then return false end
+  -- Shared pickup, turn-in, and service entries protect the whole marker.
+  local hasObjective=false
+  for _,entry in pairs(pin.entries or {}) do
+    local role=entry.node and entry.node.role
+    if role then
+      if not self:IsObjectiveRole(role) and role~="objectiveArea" then return false end
+      hasObjective=true
+    end
+  end
+  return hasObjective or self:IsObjectiveRole(pin.role) or pin.role=="objectiveArea"
+end
+
+function V:GetPinAlpha(pin,alpha)
+  alpha=tonumber(alpha) or 1
+  local objective=not pin.isMinimap and self:IsObjectiveOnlyPin(pin)
+  -- Direct hover overrides tracker fading and Full Nodes' native alpha.
+  if objective and pin.objectiveHovered then return 1 end
+  if pin.fullNode then alpha=alpha*0.85 end
+  if objective then
+    alpha=alpha*(tonumber(Settings():Get("mapObjectiveOpacity")) or 1)
+  end
+  if alpha<0 then alpha=0 end
+  if alpha>1 then alpha=1 end
+  return alpha
+end
+
 function V:EnsureGlow(pin)
   if not pin or pin.glowTexture then return end
 
@@ -251,7 +279,8 @@ end
 
 function V:ApplyPin(pin,node,isMinimap,alpha)
   if not pin or not node then return end
-  alpha=tonumber(alpha) or 1
+  pin.isMinimap=isMinimap and true or false
+  alpha=self:GetPinAlpha(pin,alpha)
 
   self:EnsureGlow(pin)
 
@@ -296,9 +325,11 @@ end
 function V:ApplyFullNode(pin,node,isMinimap,alpha)
   if not pin or not node or not pin.texture then return end
   -- pfQuest's ordinary spawn nodes are deliberately compact and subdued.
-  -- Full Nodes use pfQuest's native 14px baseline and 15% transparency;
-  -- the user's only size control is the global map/minimap scale.
-  alpha=(tonumber(alpha) or 1)*0.85
+  -- Full Nodes retain pfQuest's native 14px baseline and 15% transparency
+  -- before applying the world-map opacity preference and hover override.
+  pin.isMinimap=isMinimap and true or false
+  pin.fullNode=true
+  alpha=self:GetPinAlpha(pin,alpha)
   -- Full Nodes use the same wide per-quest color directly. Do not darken
   -- it again: pfQuest already relies on alpha/texture shape for subduing the
   -- node, and multiplying the wider palette would make dark colors vanish.
@@ -307,16 +338,12 @@ function V:ApplyFullNode(pin,node,isMinimap,alpha)
   pin.texture:SetTexture("Interface\\AddOns\\Questie-Octo\\UI\\Icons\\pfquest_node")
   pin.texture:SetVertexColor(r,g,b,alpha)
   if pin.glowTexture then pin.glowTexture:Hide() end
-  pin.fullNode=true
   pin.fullNodeNode=node
 end
 
 function V:SetAlpha(pin,alpha)
   if not pin then return end
-  alpha=tonumber(alpha) or 1
-  if pin.fullNode then alpha=alpha*0.85 end
-  if alpha<0 then alpha=0 end
-  if alpha>1 then alpha=1 end
+  alpha=self:GetPinAlpha(pin,alpha)
 
   if pin.texture then
     pin.texture:SetVertexColor(pin.iconR or 1,pin.iconG or 1,pin.iconB or 1,alpha)

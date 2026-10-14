@@ -451,6 +451,7 @@ local function CreateMapTab()
       alwaysGlowMap={type="toggle",order=1.1,name="Enable Map Icon Glow",desc="Add a colored glow behind objective icons using that quest's stable color.",width="full",get=GetValue,set=SetValue},
       questObjectiveColors={type="toggle",order=1.2,name="Enable Different Map Icon Color for Each Quest",desc="Use a different stable color for each quest's objective icons.",width="full",get=GetValue,set=SetValue},
       globalScale={type="range",order=2.2,name="Global Scale for Map Icons",desc="Adjust map icon size.",width="double",min=0.01,max=4,step=0.01,disabled=function() return not Settings():Get("enableMapIcons") end,get=GetValue,set=SetValue},
+      mapObjectiveOpacity={type="range",order=2.3,name="Objective Node Opacity",desc="Reduce objective node opacity on the world map. Hover a node to show it at full opacity. Applies to Clustered and Full Nodes.",width="double",min=0,max=1,step=0.05,isPercent=true,disabled=function() return not Settings():Get("enableMapIcons") end,get=GetValue,set=SetValue},
 
       miscellaneous_icons={type="header",order=20,name="Miscellaneous icons"},
       showMapRareMonsters={type="toggle",order=20.1,name="Rare Monsters",desc="Show Rare Monster icons on the map.",width="full",get=GetValue,set=SetValue},

@@ -1,5 +1,8 @@
 # Questie-Octo Changelog
 
+## Unreleased
+- Added an Objective Node Opacity slider to the Map options for Clustered and Full Nodes. Objective nodes and their glow become fully opaque on mouseover and return to the configured opacity afterward. Shared pickup, turn-in, and service markers remain visible.
+
 ## 1.44
 - Corrected seven stale Moonwhisper Coast quest-giver positions using the current supplied Tortoise static spawns and the current Octo client WorldMapArea geometry. This fixes available/turn-in markers that were appearing around Tyrandas instead of their current locations.
 - The corrected NPCs are Arch Druid Renethra Moonwater, Sentinel Commander Silverstreak, Zarazar Sagewind, Irea Dawncaller, Elendon Truebough, Talanis Amberscribe, and Sister Mirallun. This includes the reported Serpents Without Heads, The Light of Elunaris, and Keeper of the Broken Grove marker locations.

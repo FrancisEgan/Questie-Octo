@@ -19,6 +19,7 @@ S.defaults={
   enableTurnins=true,
   enableAvailable=true,
   globalScale=1,
+  mapObjectiveOpacity=1,
 
   -- Questie 5.2.3/6.0.0 mature old-Questie icon-type defaults.
 
@@ -295,6 +296,8 @@ function S:Set(key,value)
     if value~=5 and value~=10 and value~=15 and value~=20 and value~=25 and value~=30 and value~=35 then return false end
   elseif key=="globalScale" then
     value=Clamp(value,0.01,4)
+  elseif key=="mapObjectiveOpacity" then
+    value=Clamp(value,0,1)
   elseif key=="objectiveNodeDensity" or key=="itemStartDensity" then
     if value~="clustered" and value~="full" then return false end
   elseif key=="globalMiniMapScale" then
@@ -463,7 +466,7 @@ function S:Set(key,value)
     return true
   end
 
-  if key=="alwaysGlowMap" or key=="alwaysGlowMinimap" or
+  if key=="mapObjectiveOpacity" or key=="alwaysGlowMap" or key=="alwaysGlowMinimap" or
      key=="questObjectiveColors" or key=="questMinimapObjectiveColors" or
      key=="objectiveColorVisionMode" then
     if QuestieOcto.Map and QuestieOcto.Map.RefreshVisualSettings then

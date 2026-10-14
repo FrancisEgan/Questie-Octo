@@ -365,7 +365,6 @@ end
 function M:ApplyTrackerHoverToPin(pin)
   if not pin then return end
   local alpha=TrackerHoverAlphaForPin(pin,self.trackerHoverQuestID)
-  if pin.trackerHoverAlpha==alpha then return end
   pin.trackerHoverAlpha=alpha
   if QuestieOcto.Visuals then QuestieOcto.Visuals:SetAlpha(pin,alpha) end
 end
@@ -1003,8 +1002,20 @@ local function AttachWorldMapPinInput(pin)
   if not pin then return end
   pin:EnableMouse(true)
   pin:RegisterForClicks("LeftButtonUp")
-  pin:SetScript("OnEnter",function() QuestieOcto.Tooltips:Show(this) end)
-  pin:SetScript("OnLeave",function() QuestieOcto.Tooltips:Hide(this) end)
+  pin:SetScript("OnEnter",function()
+    this.objectiveHovered=true
+    M:ApplyTrackerHoverToPin(this)
+    QuestieOcto.Tooltips:Show(this)
+  end)
+  pin:SetScript("OnLeave",function()
+    this.objectiveHovered=nil
+    M:ApplyTrackerHoverToPin(this)
+    QuestieOcto.Tooltips:Hide(this)
+  end)
+  pin:SetScript("OnHide",function()
+    this.objectiveHovered=nil
+    M:ApplyTrackerHoverToPin(this)
+  end)
   -- Shift + Left Click opens the quest represented by the hovered pin directly
   -- in Questie-Octo's Quest Browser. Ordinary clicks retain the established
   -- continent-map zone-entry behavior.
@@ -1054,6 +1065,7 @@ local function ResetPooledWorldMapPin(pin)
   pin.offsetX=nil
   pin.offsetY=nil
   pin.trackerHoverAlpha=nil
+  pin.objectiveHovered=nil
   if QuestieOcto.Visuals then QuestieOcto.Visuals:ClearPin(pin,1) end
 end
 
@@ -2175,7 +2187,7 @@ function M:RefreshVisualSettings()
       pin.role=nil
       pin.iconScaleKey=nil
       RefreshPinVisual(pin)
-      if QuestieOcto.Visuals then QuestieOcto.Visuals:SetAlpha(pin,1) end
+      self:ApplyTrackerHoverToPin(pin)
     end
   end
 
