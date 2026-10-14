@@ -86,18 +86,23 @@ local function ResolveQuestID(link,text)
   id=tonumber(id)
   if id and id>0 then return id end
 
-  -- Older pfQuest/Turtle link formats can carry only a title (quest2:*).
-  -- Resolve those by exact localized title, matching pfQuest's old behavior.
+  -- Older pfQuest/Turtle links can carry only a title (quest2:*), and
+  -- quest:0 links have no usable ID. Resolve an exact, unique localized
+  -- title in either case; a shared title cannot identify a quest safely.
   local isQuest2=string.find(link,"^quest2:")
-  if not isQuest2 then return nil end
+  if not isQuest2 and id~=0 then return nil end
   local wanted=LinkTitle(text)
   if not wanted or not QuestieOcto.DatabaseAPI or not QuestieOcto.DatabaseAPI:IsReady() then return nil end
   local ids=QuestieOcto.DatabaseAPI:GetQuestIDs()
+  local matchedID=nil
   for i=1,table.getn(ids) do
     local questID=tonumber(ids[i])
-    if questID and QuestieOcto.DatabaseAPI:GetQuestTitle(questID)==wanted then return questID end
+    if questID and questID>0 and QuestieOcto.DatabaseAPI:GetQuestTitle(questID)==wanted then
+      if matchedID and matchedID~=questID then return nil end
+      matchedID=questID
+    end
   end
-  return nil
+  return matchedID
 end
 
 local function IsQuestLink(link)

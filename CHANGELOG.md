@@ -1,6 +1,7 @@
 # Questie-Octo Changelog
 
 ## Unreleased
+- Fixed quest links with ID 0 showing unavailable details when their title uniquely matches a database quest, including Fiery Blaze Enchantments.
 - Added an Objective Node Opacity slider to the Map options for Clustered and Full Nodes. Objective nodes and their glow become fully opaque on mouseover and return to the configured opacity afterward. Shared pickup, turn-in, and service markers remain visible.
 
 ## 1.44
