@@ -569,7 +569,9 @@ function T:AddRow(text,kind,questID,complete,questLevel,failed)
   row.failed=failed and true or false
   row.questLevel=questLevel
   row.displayText=text or ""
-  row:EnableMouse(questID and true or false)
+  local interactive=not Settings():Get("trackerClickthrough")
+  row:EnableMouse(interactive and questID and true or false)
+  if row.EnableMouseWheel then row:EnableMouseWheel(interactive) end
   -- First render pass: create the exact visible text at natural width. The
   -- subsequent AutoFitWidth() measures this same FontString via GetStringWidth().
   ApplyRowStyle(row, math.max(1,(self.scroll and self.scroll:GetWidth()) or self.defaultWidth))
@@ -982,7 +984,19 @@ end
 function T:ApplyLockState()
   if not self.frame then return end
   local locked=Settings():Get("trackerLocked") and true or false
-  self.frame:SetMovable(not locked)
+  local interactive=not Settings():Get("trackerClickthrough")
+  self.frame:SetMovable(interactive and not locked)
+  -- Child frames keep their own mouse/wheel state on Vanilla. Disabling only
+  -- the shell leaves quest rows and the collapse button intercepting input.
+  local frames={self.frame,self.header,self.scroll,self.content,self.minimize}
+  for _,frame in pairs(frames) do
+    frame:EnableMouse(interactive)
+    if frame~=self.minimize and frame.EnableMouseWheel then frame:EnableMouseWheel(interactive) end
+  end
+  for _,row in pairs(self.rows) do
+    row:EnableMouse(interactive and row.questID and true or false)
+    if row.EnableMouseWheel then row:EnableMouseWheel(interactive) end
+  end
   -- Height is controlled exclusively by the discrete Visible Rows option.
   -- Do not expose pixel resizing, which can reintroduce partial-row clipping.
   self.frame:SetResizable(false)
@@ -1224,7 +1238,13 @@ function T:OnTrackerSettingChanged(key,value)
   if key=="trackerEnabled" then
     self:ApplyNativeTrackerVisibility()
     self:Render()
-  elseif key=="trackerLocked" then
+  elseif key=="trackerLocked" or key=="trackerClickthrough" then
+    if key=="trackerClickthrough" and value then
+      if self.frame then self.frame:StopMovingOrSizing() end
+      if self.hoverQuestID and GameTooltip then GameTooltip:Hide() end
+      self:SetTrackerHoverQuest(nil)
+      if self.contextMenu and CloseDropDownMenus then CloseDropDownMenus() end
+    end
     self:ApplyLockState()
     self:Render()
   elseif key=="trackerBackgroundOpacity" then

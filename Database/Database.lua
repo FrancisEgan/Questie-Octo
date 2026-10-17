@@ -267,6 +267,18 @@ function DB:GetCreatureRank(id)
   return raw and (raw["rnk"] or raw["rank"]) or nil
 end
 
+function DB:GetCreatureLevelRange(id)
+  local raw=self:GetCreatureRaw(tonumber(id))
+  local level=raw and raw["lvl"]
+  if not level then return nil end
+  local text=tostring(level)
+  local _,_,low,high=string.find(text,"^(%d+)%s*%-%s*(%d+)$")
+  low=tonumber(low) or tonumber(text)
+  high=tonumber(high) or low
+  if not low or low<=0 or high<low then return nil end
+  return low,high
+end
+
 function DB:GetCreatureFaction(id)
   local raw=self:GetCreatureRaw(id)
   return raw and (raw["fac"] or raw["faction"]) or nil

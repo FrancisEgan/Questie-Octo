@@ -1,6 +1,8 @@
 # Questie-Octo Changelog
 
 ## Unreleased
+- Added Clickthrough Tracker under Tracker options. When enabled, the whole tracker passes mouse clicks and scrolling through to the world; turn it off in options to restore interaction.
+- Map and minimap creature tooltips now show database creature levels or level ranges, including item-start sources, nearby/clustered markers, and Shift-hover details.
 - Fixed quest links with ID 0 showing unavailable details when their title uniquely matches a database quest, including Fiery Blaze Enchantments.
 - Added an Objective Node Opacity slider to the Map options for Clustered and Full Nodes. Objective nodes and their glow become fully opaque on mouseover and return to the configured opacity afterward. Shared pickup, turn-in, and service markers remain visible.
 

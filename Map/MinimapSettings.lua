@@ -95,6 +95,7 @@ S.defaults={
   -- Questie 3.3.5 tracker driver defaults. Rendering is a separate layer.
   trackerEnabled=true,
   trackerLocked=true,
+  trackerClickthrough=false,
   trackerAutoTrack=true,
   -- Native Quest Log tracked checkmarks are optional. The custom tracker owns
   -- tracking state; this toggle only controls the Blizzard/Turtle row check.
@@ -285,7 +286,7 @@ function S:Set(key,value)
       key=="enableTooltipsNPCID" or key=="enableTooltipsItemID" or
       key=="enableTooltipDroprates" or
       key=="questLogShowLevels" or key=="questLogDifficultyColors" or
-      key=="trackerEnabled" or key=="trackerLocked" or key=="trackerAutoTrack" or
+      key=="trackerEnabled" or key=="trackerLocked" or key=="trackerClickthrough" or key=="trackerAutoTrack" or
       key=="trackerQuestLogCheckmarks" or key=="trackerShowCompleted" or key=="trackerHideCompletedObjectives" or key=="trackerHideInCombat" or
       key=="trackerOutlineText" or key=="trackerThickOutlineText" or
       key=="showZoneLevelRanges" or key=="useDarkTheme" or key=="showMinimapButton" or

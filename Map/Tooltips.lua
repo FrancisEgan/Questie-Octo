@@ -403,8 +403,41 @@ local function AddCenteredTildeLine(tooltip,prefix,suffix,r,g,b,wrap,spaceAround
   PlaceCenteredTilde(tooltip,prefix,r,g,b,spaceIndex)
 end
 
+local function LevelText(low,high)
+  if not low then return nil end
+  if high and high~=low then return "Levels "..tostring(low).."-"..tostring(high) end
+  return "Level "..tostring(low)
+end
+
+-- Read only the creature IDs represented by the hovered marker. Objects and
+-- quest levels cannot tell a player how dangerous the creatures actually are.
+local function PinCreatureLevelText(pin)
+  local low,high=nil,nil
+  local seen={}
+  local function Add(id)
+    id=tonumber(id)
+    if not id or seen[id] then return end
+    seen[id]=true
+    local minLevel,maxLevel=QuestieOcto.DatabaseAPI:GetCreatureLevelRange(id)
+    if minLevel then
+      low=low and math.min(low,minLevel) or minLevel
+      high=high and math.max(high,maxLevel) or maxLevel
+    end
+  end
+  if pin.sourceKind=="creature" then Add(pin.sourceID) end
+  for _,entry in pairs(pin.entries or {}) do
+    local node=entry.node
+    if node and node.sourceKind=="creature" then Add(node.sourceID) end
+  end
+  for _,source in pairs((pin.itemStartArea and pin.itemStartArea.sourceList) or {}) do Add(source.id) end
+  return LevelText(low,high)
+end
+
 local function SourceDisplayName(source)
   local name=tostring(source.name or "Creature")
+  local low,high=QuestieOcto.DatabaseAPI:GetCreatureLevelRange(source.id)
+  local level=LevelText(low,high)
+  if level then name=name.." ("..level..")" end
   local rank=RareRankText(source.rank)
   if rank then name=name.." ["..rank.."]" end
   if Settings():Get("enableTooltipsNPCID") and source.id then
@@ -561,6 +594,8 @@ end
 
 local function QuestSourceTitle(pin)
   local title=pin.displayName or "Quest source"
+  local level=PinCreatureLevelText(pin)
+  if level then title=title.." ("..level..")" end
   local rank=RareSourceInfo(pin)
   if rank then title=title.." ["..rank.."]" end
   return title
@@ -739,6 +774,8 @@ local function ShowCombinedNearbyQuestTooltip(pin,pins)
       first=false
 
       tooltip:AddLine(tostring(area.displayName or "Item-start source"),.2,1,.35)
+      local level=PinCreatureLevelText(near)
+      if level then tooltip:AddLine(level,.82,.82,.82) end
       local q=QuestieOcto.QuestModel:Get(area.questID)
       if q then
         local key="itemstart:"..tostring(area.questID)
@@ -1458,6 +1495,8 @@ local function ShowShiftQuestDetails(pin,tooltip)
   end
 
   if added==0 then return false end
+  local level=PinCreatureLevelText(pin)
+  if level then tooltip:AddLine("Creature "..string.lower(level),.82,.82,.82) end
   tooltip:Show()
   return true
 end
@@ -1501,8 +1540,9 @@ function T:Show(pin)
           break
         end
       end
-      if level then
-        tooltip:AddLine("[Rare] - Level "..tostring(level),1,.82,0)
+      local levelText=PinCreatureLevelText(pin) or (level and ("Level "..tostring(level)))
+      if levelText then
+        tooltip:AddLine("[Rare] - "..levelText,1,.82,0)
       else
         tooltip:AddLine("[Rare]",1,.82,0)
       end
@@ -1581,6 +1621,8 @@ function T:Show(pin)
         tostring(sourceCount).." creature types, "..tostring(spawnCount).." zone spawns",
         .65,.65,.65
       )
+      local level=PinCreatureLevelText(pin)
+      if level then tooltip:AddLine(level,.82,.82,.82) end
     else
       -- Ordinary clustered item-start areas still list their nearby sources.
       -- Use AddDoubleLine with an empty right column for every source row so

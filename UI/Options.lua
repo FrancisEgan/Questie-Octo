@@ -506,6 +506,7 @@ local function CreateTrackerTab()
         if QuestieOcto.TrackerFrame and QuestieOcto.TrackerFrame.ResetLocation then QuestieOcto.TrackerFrame:ResetLocation() end
       end},
       trackerLocked={type="toggle",order=3,name="Lock Tracker",desc="Prevent the tracker from being moved.",width="full",get=GetValue,set=SetValue},
+      trackerClickthrough={type="toggle",order=3.1,name="Clickthrough Tracker",desc="Let clicks and the mouse wheel pass through the entire tracker. Disables tracker movement, quest clicks, hover tooltips, scrolling, and collapse controls. Turn this off here to interact with the tracker again.",width="full",get=GetValue,set=SetValue},
       trackerAutoTrack={type="toggle",order=4,name="Auto Track Quests",desc="Automatically track accepted quests.",width="full",get=GetValue,set=SetValue},
       questLogShowLevels={type="toggle",order=4.4,name="Show Quest Levels in the Quest Log",desc="Show quest levels in the Quest Log.",width="full",get=GetValue,set=SetValue},
       trackerQuestLogCheckmarks={type="toggle",order=4.5,name="Show Quest Log Checkmarks",desc="Show the native checkmark beside quests tracked by Questie-Octo.",width="full",get=GetValue,set=SetValue},
