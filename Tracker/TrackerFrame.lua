@@ -47,6 +47,7 @@ local function CharacterDB()
   QuestieOctoDB.tracker=QuestieOctoDB.tracker or {}
   local db=QuestieOctoDB.tracker
   db.window=db.window or {}
+  db.collapsedZones=db.collapsedZones or {}
   if db.expanded==nil then db.expanded=true end
   if db.topRow==nil then db.topRow=1 end
   return db
@@ -391,8 +392,13 @@ local function EnsureRow(index,parent)
   end)
   row:RegisterForClicks("LeftButtonUp","RightButtonUp")
   row:SetScript("OnClick",function()
-    if not this.questID then return end
+    if Settings():Get("trackerClickthrough") then return end
     local click=arg1 or "LeftButton"
+    if this.kind=="zone" and this.zoneGroup then
+      if click=="LeftButton" then T:ToggleZone(this.zoneGroup) end
+      return
+    end
+    if not this.questID then return end
     if click=="RightButton" then
       T:ShowQuestMenu(this.questID)
       return
@@ -417,6 +423,7 @@ function T:ClearRows()
     row:Hide()
     row.questID=nil
     row.questTitle=nil
+    row.zoneGroup=nil
     row.kind=nil
     row.displayText=nil
     row.timerQuestID=nil
@@ -565,12 +572,13 @@ function T:AddRow(text,kind,questID,complete,questLevel,failed)
   row.questID=questID
   row.questTitle=(kind=="quest") and text or nil
   row.kind=kind
+  row.zoneGroup=nil
   row.complete=complete and true or false
   row.failed=failed and true or false
   row.questLevel=questLevel
   row.displayText=text or ""
   local interactive=not Settings():Get("trackerClickthrough")
-  row:EnableMouse(interactive and questID and true or false)
+  row:EnableMouse(interactive and (questID or kind=="zone") and true or false)
   if row.EnableMouseWheel then row:EnableMouseWheel(interactive) end
   -- First render pass: create the exact visible text at natural width. The
   -- subsequent AutoFitWidth() measures this same FontString via GetStringWidth().
@@ -757,39 +765,43 @@ function T:Render()
 
   for i=1,table.getn(ordered) do
     local quest=ordered[i]
+    local zone=quest.zoneGroup or "Other"
     if sortMode=="zone" then
-      local zone=quest.zoneGroup or "Other"
       if zone~=lastZone then
         if self.rowCount>0 then self:AddRow("","spacer",nil,false) end
-        self:AddRow(zone,"zone",nil,false)
+        local indicator=db.collapsedZones[zone] and "+ " or "- "
+        local row=self:AddRow(indicator..zone,"zone",nil,false)
+        row.zoneGroup=zone
         lastZone=zone
       end
     end
 
-    local prefix=""
-    if quest.level and tonumber(quest.level) and tonumber(quest.level)>0 then
-      -- Match the Quest Log/map convention: native tags remain authoritative,
-      -- with the audited compiled Type 1/62/81 projection filling gaps for
-      -- custom quests whose native Quest Log tag is missing.
-      prefix="["..tostring(quest.level)..(quest.levelPlus and "+" or "").."] "
-    end
-    local title=tostring(quest.title or "Quest")
-    if quest.failed then
-      title=title.." (Failed)"
-    elseif quest.complete then
-      title=title.." ("..tostring(_G["COMPLETE"] or "Complete")..")"
-    end
-    self:AddRow(prefix..title,"quest",quest.id,quest.complete,quest.level,quest.failed)
-    self:AddTimerRow(quest)
+    if sortMode~="zone" or not db.collapsedZones[zone] then
+      local prefix=""
+      if quest.level and tonumber(quest.level) and tonumber(quest.level)>0 then
+        -- Match the Quest Log/map convention: native tags remain authoritative,
+        -- with the audited compiled Type 1/62/81 projection filling gaps for
+        -- custom quests whose native Quest Log tag is missing.
+        prefix="["..tostring(quest.level)..(quest.levelPlus and "+" or "").."] "
+      end
+      local title=tostring(quest.title or "Quest")
+      if quest.failed then
+        title=title.." (Failed)"
+      elseif quest.complete then
+        title=title.." ("..tostring(_G["COMPLETE"] or "Complete")..")"
+      end
+      self:AddRow(prefix..title,"quest",quest.id,quest.complete,quest.level,quest.failed)
+      self:AddTimerRow(quest)
 
-    -- TrackerDriver already applies the Hide Completed Objectives setting to
-    -- quest.objectives. Render whatever survives that filter even when the
-    -- whole quest is complete, so OFF means completed objective rows remain
-    -- visible and ON hides them consistently for partial and fully-complete
-    -- quests alike.
-    for j=1,table.getn(quest.objectives or {}) do
-      local objective=quest.objectives[j]
-      self:AddRow(ObjectiveDisplayText(objective),"objective",nil,objective.complete)
+      -- TrackerDriver already applies the Hide Completed Objectives setting to
+      -- quest.objectives. Render whatever survives that filter even when the
+      -- whole quest is complete, so OFF means completed objective rows remain
+      -- visible and ON hides them consistently for partial and fully-complete
+      -- quests alike.
+      for j=1,table.getn(quest.objectives or {}) do
+        local objective=quest.objectives[j]
+        self:AddRow(ObjectiveDisplayText(objective),"objective",nil,objective.complete)
+      end
     end
   end
 
@@ -994,13 +1006,22 @@ function T:ApplyLockState()
     if frame~=self.minimize and frame.EnableMouseWheel then frame:EnableMouseWheel(interactive) end
   end
   for _,row in pairs(self.rows) do
-    row:EnableMouse(interactive and row.questID and true or false)
+    row:EnableMouse(interactive and (row.questID or row.kind=="zone") and true or false)
     if row.EnableMouseWheel then row:EnableMouseWheel(interactive) end
   end
   -- Height is controlled exclusively by the discrete Visible Rows option.
   -- Do not expose pixel resizing, which can reintroduce partial-row clipping.
   self.frame:SetResizable(false)
   if self.resizeGrip then self.resizeGrip:Hide() end
+end
+
+function T:ToggleZone(zone)
+  if not zone or Settings():Get("trackerClickthrough") then return end
+  local db=CharacterDB()
+  db.collapsedZones[zone]=not db.collapsedZones[zone] or nil
+  self:SetTrackerHoverQuest(nil)
+  if GameTooltip then GameTooltip:Hide() end
+  self:Render()
 end
 
 function T:ToggleExpanded()
