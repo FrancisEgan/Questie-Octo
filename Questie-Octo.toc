@@ -76,6 +76,7 @@ Libs\AceConfigDialog-3.0\AceConfigDialog-3.0.xml
 UI\QuestResearch.lua
 UI\QuestLinkTooltip.lua
 UI\Options.lua
+UI\WorldMapControls.lua
 UI\MinimapButton.lua
 UI\GameMenu.lua
 Core\Bootstrap.lua

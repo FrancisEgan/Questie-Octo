@@ -1,6 +1,7 @@
 # Questie-Octo Changelog
 
 ## Unreleased
+- Added a Quest Nodes dropdown to the world map for switching objective nodes between Clustered and Full Nodes. It sits below ModernMapMarkers-octo's Filter Markers and Find Marker controls when present and shares the existing options setting.
 - Click zone titles in the tracker to collapse or expand their quests. Collapsed zones are remembered per character.
 - Added Clickthrough Tracker under Tracker options. When enabled, the whole tracker passes mouse clicks and scrolling through to the world; turn it off in options to restore interaction.
 - Map and minimap creature tooltips now show database creature levels or level ranges, including item-start sources, nearby/clustered markers, and Shift-hover details.

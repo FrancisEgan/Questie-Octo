@@ -400,6 +400,9 @@ function S:Set(key,value)
   -- behavior as Clustered / Full Nodes while keeping PreparedMap shared by
   -- world map and minimap.
   if key=="objectiveNodeDensity" or key=="itemStartDensity" then
+    if key=="objectiveNodeDensity" and QuestieOcto.WorldMapControls then
+      QuestieOcto.WorldMapControls:Refresh()
+    end
     if QuestieOcto.PreparedMap and QuestieOcto.PreparedMap.PrepareAll and
        QuestieOcto.Nodes and QuestieOcto.Nodes.ready then
       QuestieOcto.PreparedMap:PrepareAll("density:"..tostring(key))
